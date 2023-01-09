@@ -1,0 +1,202 @@
+This is docTGQreq.info, produced by makeinfo version 6.7 from osm.texi.
+
+INFO-DIR-SECTION Emacs misc features
+START-INFO-DIR-ENTRY
+* Osm: (osm).           OpenStreetMap viewer for Emacs.
+END-INFO-DIR-ENTRY
+
+
+File: docTGQreq.info,  Node: Top,  Next: Features,  Up: (dir)
+
+osm.el - OpenStreetMap viewer for Emacs
+***************************************
+
+Osm.el is a tile-based map viewer, with a responsive movable and
+zoomable display.  The map can be controlled with the keyboard or with
+the mouse.  The viewer fetches the map tiles in parallel from tile
+servers via the ‘curl’ program.  The package comes with a list of
+multiple preconfigured tile servers.  You can bookmark your favorite
+locations using regular Emacs bookmarks or create links from Org files
+to locations.  Furthermore the package provides commands to search for
+locations by name and to open and display GPX tracks.
+
+* Menu:
+
+* Features::
+* Configuration::
+* Bookmarks, Org and Elisp links: Bookmarks Org and Elisp links.
+* Commands and Key Bindings::
+* Related projects::
+* Contributions::
+
+
+File: docTGQreq.info,  Node: Features,  Next: Configuration,  Prev: Top,  Up: Top
+
+1 Features
+**********
+
+   • Responsive, zoomable and movable map display
+   • Display of tracks and POIs from GPX file
+   • Parallel fetching of tiles with curl
+   • Moving in large and small steps
+   • Mouse support (dragging, clicking, menu)
+   • Map scale indicator
+   • Go to coordinate
+   • Search for location by name
+   • Org and Elisp link support
+   • Bookmarked positions with pins
+   • Multiple preconfigured tile servers
+
+
+File: docTGQreq.info,  Node: Configuration,  Next: Bookmarks Org and Elisp links,  Prev: Features,  Up: Top
+
+2 Configuration
+***************
+
+The package is available on GNU ELPA and can be installed with
+‘package-install’.  Note that Osm.el requires Emacs 27 and depends on
+the external ‘curl’ program.  Emacs must be built with ‘libxml’,
+‘libjansson’, ‘librsvg’, ‘libjpeg’ and ‘libpng’ support.  The following
+is an example configuration which relies on ‘use-package’.  Please take
+a look at the wiki (https://github.com/minad/osm/wiki) for additional
+configuration.
+
+     (use-package osm
+       :bind (("C-c m h" . osm-home)
+              ("C-c m s" . osm-search)
+              ("C-c m v" . osm-server)
+              ("C-c m t" . osm-goto)
+              ("C-c m x" . osm-gpx-show)
+              ("C-c m j" . osm-bookmark-jump))
+
+       :custom
+       ;; Take a look at the customization group `osm' for more options.
+       (osm-server 'default) ;; Configure the tile server
+       (osm-copyright t)     ;; Display the copyright information
+
+       :init
+       ;; Load Org link support
+       (with-eval-after-load 'org
+         (require 'osm-ol)))
+
+
+File: docTGQreq.info,  Node: Bookmarks Org and Elisp links,  Next: Commands and Key Bindings,  Prev: Configuration,  Up: Top
+
+3 Bookmarks, Org and Elisp links
+********************************
+
+To store a bookmark press the key ‘b’, to store Org/Elisp links press
+the keys ‘l’ or ‘e’ respectively.  You can also use a custom binding,
+e.g., ‘C-c l’.  Then the link can be inserted into an Org buffer with
+‘C-c C-l’.  Bookmarks and Org links can be created at point with the
+mouse, see ‘osm-bookmark-set-click’ and ‘osm-org-link-click’.
+
+  1. Org link examples
+
+     Click on a link or press ‘RET’ to jump to the location.  These
+     links work in Org buffers in Emacs.  Furthermore you can open Org
+     links in arbitary buffers with ‘org-open-at-point-global’.  I
+     recommend binding this command to a key, e.g., ‘C-c o’.
+
+          [[osm:opentopomap:41.869560826994544,12.45849609375,6][Italia, 41.87° 12.46° OpenTopoMap]]
+          [[osm:51.48950698022105,-0.144195556640625,11][London, England, 51.49° -0.14°]]
+          [[osm:cyclosm:55.686875255964424,12.569732666015625,12][København, Danmark, 55.69° 12.57° CyclOSM]]
+          [[osm:stamen-watercolor:40.72956780913898,-73.97918701171875,12][New York, United States, 40.73° -73.98° Stamen Watercolor]]
+          [[osm:opentopomap:27.961656050984658,86.89224243164062,13][Mount Everest, 27.96° 86.89° OpenTopoMap]]
+          <osm:Tour Eiffel, Av. Gustave Eiffel, Paris> (Address link)
+
+  2. Elisp link examples
+
+     Place the point behind the closing parenthesis and press ‘C-x C-e’
+     to jump to the location.  The Elisp links can be used in arbitrary
+     text files.  Since they are Elisp s-expressions they can be easily
+     manipulated programatically.
+
+          (osm 41.869561 12.458496 6 opentopomap "Lazio, Italia")
+          (osm 51.489507 -0.144196 11 "London, Greater London, England, SW1A 2DX, United Kingdom")
+          (osm 55.686875 12.569733 12 cyclosm "København, Københavns Kommune, Region Hovedstaden, 1357, Danmark")
+          (osm 40.729568 -73.979187 12 stamen-watercolor "New York County, New York, United States")
+          (osm 27.961656 86.892242 13 opentopomap "Khumjung, Khumbupasanglahmu, सोलुखुम्बु, Province #1, Nepal")
+          (osm "Tour Eiffel, Av. Gustave Eiffel, Paris") ;; Address link
+
+
+File: docTGQreq.info,  Node: Commands and Key Bindings,  Next: Related projects,  Prev: Bookmarks Org and Elisp links,  Up: Top
+
+4 Commands and Key Bindings
+***************************
+
+Top-level commands:
+   • ‘osm-home’: Open new map at home coordinates
+   • ‘osm-search’: Search and jump to location
+   • ‘osm-goto’: Go to coordinates
+   • ‘osm-server’: Select server
+   • ‘osm-bookmark-jump’: Jump to bookmark
+   • ‘osm-gpx-show’: Show GPX file in map viewer
+
+   Key bindings in ‘osm-mode’ buffer:
+   • ‘<arrow>’: Small step scrolling
+   • ‘C-<arrow>’, ‘M-<arrow>’: Large step scrolling
+   • ‘+’, ‘SPC’: ‘osm-zoom-in’ - Zoom in
+   • ‘-’, ‘S-SPC’: ‘osm-zoom-out’ - Zoom out
+   • ‘<mouse-1>’: ‘osm-transient-click’ - Place transient pin at point
+   • ‘<mouse-2>’: ‘osm-org-link-click’ - Store point as Org link
+   • ‘<mouse-3>’: ‘osm-bookmark-set-click’ - Store point as bookmark
+   • ‘<osm-bookmark mouse-*>’: ‘osm-bookmark-delete-click’ - Click on
+     bookmark at point to delete
+   • ‘<down-mouse-*>’: ‘osm-mouse-drag’ - Drag the map with the mouse
+   • ‘d’, ‘DEL’: ‘osm-bookmark-delete’ - Delete selected bookmark
+   • ‘t’: ‘osm-goto’ - Go to location
+   • ‘c’: ‘osm-center’ - Center to currently marked pin
+   • ‘h’: ‘osm-home’ - Go to home location
+   • ‘s’: ‘osm-search’ - Search for location
+   • ‘v’: ‘osm-server’ - Select tile server
+   • ‘x’: ‘osm-gpx-show’ - Show tracks and POIs from GPX file
+   • ‘X’: ‘osm-gpx-hide’ - Hide overlays from GPX file
+   • ‘l’: ‘org-store-link’ - Store Org link
+   • ‘e’: ‘osm-elisp-link’ - Store Elisp link in the kill ring
+   • ‘b’: ‘osm-bookmark-set’ - Set bookmark
+   • ‘n’: ‘osm-bookmark-rename’ - Rename selected bookmark
+   • ‘j’: ‘osm-bookmark-jump’ - Jump to bookmark
+   • ‘q’: ‘quit-window’ - Close buffer and window
+   • ‘o’: ‘clone-buffer’ - Clone buffer
+
+
+File: docTGQreq.info,  Node: Related projects,  Next: Contributions,  Prev: Commands and Key Bindings,  Up: Top
+
+5 Related projects
+******************
+
+There have been other attempts at map viewers in Emacs before.
+
+   • <https://github.com/ruediger/osm-mode>
+   • <https://github.com/svenssonjoel/Emacs-OSM>
+   • <https://github.com/jd/google-maps.el>
+   • <https://github.com/emacsattic/org-osm-link>
+
+
+File: docTGQreq.info,  Node: Contributions,  Prev: Related projects,  Up: Top
+
+6 Contributions
+***************
+
+Since this package is part of GNU ELPA
+(https://elpa.gnu.org/packages/osm.html) contributions require a
+copyright assignment to the FSF.
+
+
+
+Tag Table:
+Node: Top207
+Node: Features1067
+Node: Configuration1608
+Node: Bookmarks Org and Elisp links2797
+Node: Commands and Key Bindings5166
+Node: Related projects7270
+Node: Contributions7684
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:
