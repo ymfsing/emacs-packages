@@ -1,8 +1,5 @@
 name: Emacs packages publisher
 
-permissions:
-  contents: write
-
 on:
   push:
     paths-ignore:
@@ -11,14 +8,18 @@ on:
       - main
   schedule:
     - cron: "0 0 1 * *"
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         emacs_version:
           - 30.1
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: purcell/setup-emacs@master
         with:
