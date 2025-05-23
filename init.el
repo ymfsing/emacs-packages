@@ -20,17 +20,18 @@
 (setq package-archives '(("elpa"   . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("melpa"  . "https://melpa.org/packages/")
-                         ("gh-melpa-20241111" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/20f15961e2cfad48aa3bf5285e73a1c17847773e/melpa/")
+                         ("gh-melpa" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/melpa/")
                          ))
 
-(setq package-archive-priorities '(("melpa"  . 50)
-                                   ("nongnu" . 30)
-                                   ("elpa"   . 10)
+(setq package-archive-priorities '(("elpa"   . 90)
+                                   ("nongnu" . 70)
+                                   ("melpa"  . 50)
+                                   ("gh-melpa"  . 30)
                                    ))
 
-(when (boundp 'package-pinned-packages)
-  (setq package-pinned-packages
-        '((emacsql . "gh-melpa-20241111"))))
+;; (when (boundp 'package-pinned-packages)
+;;   (setq package-pinned-packages
+;;         '((emacsql . "gh-melpa"))))
 
 (package-initialize)
 (package-refresh-contents)
@@ -43,49 +44,38 @@
     elpa-mirror
     auto-package-update
     ;;; init
-    ;; esup
     gcmh
-    ;;; init-chinese
+    ;;; chinese
     pyim
     osx-dictionary
     fanyi
     go-translate
-    ;;; init-completion
+    ;;; completion
     yasnippet
-    ;; yasnippet-snippets
-    yasnippet-capf
-    ;; company
-    cape
-    corfu
-    corfu-terminal
-    ;;; init-edit
+    ;;; edit
     vundo
     avy
     hl-todo
-    speed-type
-    flycheck
-    ;;; init-file
+    ;;; files
     dired-git-info
     dired-rsync
     diredfl
-    ;;; init-keymaps
+    ;;; evil
     evil
     evil-lion
-    ;; meow
     keyfreq
     keycast
-    ;;; init-minibuffer
+    ;;; minibuffer
     vertico
     marginalia
     orderless
     consult
     consult-dir
-    consult-lsp
     consult-org-roam
     consult-yasnippet
     embark
     embark-consult
-    ;;; init-ui
+    ;;; ui
     posframe
     all-the-icons
     all-the-icons-dired
@@ -99,17 +89,10 @@
     burly
     winum
     shackle
-    ;;; init-vsc
-    magit
     ;;; vc-msg
     blamer
     diff-hl
-    ;;; init-prog
-    lsp-mode
-    lsp-pyright
-    ;; lsp-ui
-    ;; dap-mode
-    ;; eglot
+    ;;; prog
     citre
     format-all
     aggressive-indent
@@ -129,19 +112,15 @@
     org-contrib
     org-appear
     org-download
-    iscroll
-    org-transclusion
     toc-org
     ox-pandoc
     anki-editor
-    habitica
     org-roam
-    emacsql-sqlite-builtin
     org-roam-ui
     jupyter
     ruby-mode
-    ;; vterm
-    ;; vterm-toggle
+    vterm
+    vterm-toggle
     web-mode
     emmet-mode
     typescript-mode
@@ -150,19 +129,15 @@
     yaml-mode
     nix-mode
     org-static-blog
-    pdf-tools
-    nov
     plantuml-mode
-    osm
-    ;; nntwitter
+    ;;; tools
+    aidermacs
     leetcode
-    ;; ement
-    ;; mastodon
+    speed-type
+    flycheck
     )
   "A list of packages to ensure are installed at launch.")
 
-;; (setq package-pinned-packages '((telega . "melpa-stable")
-;;                                 ))
 
 ;; Scans the list in mypackages
 ;; If the package listed is not already installed, install it
@@ -179,10 +154,6 @@
       quelpa-melpa-recipe-stores nil
       quelpa-git-clone-depth 1)
 
-;; (quelpa '(compat :fetcher github :repo "emacs-compat/compat"))
-
-(quelpa '(on :fetcher github :repo "ajgrf/on.el"))
-
 (quelpa '(pyim-tsinghua-dict
           :fetcher github
           :repo "redguardtoo/pyim-tsinghua-dict"
@@ -190,21 +161,18 @@
 
 (quelpa '(color-rg :fetcher github :repo "manateelazycat/color-rg"))
 
-(quelpa '(fingertip :fetcher github :repo "manateelazycat/fingertip"))
-
 (quelpa '(thing-edit :fetcher github :repo "manateelazycat/thing-edit"))
 
 (quelpa '(auto-save :fetcher github :repo "manateelazycat/auto-save"))
 
 (quelpa '(clue :fetcher github :repo "AmaiKinono/clue"))
 
-;; (quelpa '(lsp-bridge :fetcher github
-;;                      :repo "manateelazycat/lsp-bridge"
-;;                      :files ("*.el" "*.py" "acm" "core" "langserver"
-;;                              "multiserver" "resources")))
+(quelpa '(lsp-bridge :fetcher github
+                     :repo "manateelazycat/lsp-bridge"
+                     :files (:defaults "*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")))
 
-;; (quelpa '(popon :fetcher git :url "https://codeberg.org/akib/emacs-popon.git"))
-;; (quelpa '(acm-terminal :fetcher github :repo "twlz0ne/acm-terminal"))
+(quelpa '(popon :fetcher git :url "https://codeberg.org/akib/emacs-popon.git"))
+(quelpa '(acm-terminal :fetcher github :repo "twlz0ne/acm-terminal"))
 
 ;; (quelpa '(org-link-archive :fetcher github :repo "farynaio/org-link-archive"))
 
@@ -212,15 +180,9 @@
 
 (quelpa '(org-imagine :fetcher github :repo "metaescape/org-imagine"))
 
-(quelpa '(org-noter-plus :fetcher github :repo "yuchen-lea/org-noter-plus"))
+;; (quelpa '(org-noter-plus :fetcher github :repo "yuchen-lea/org-noter-plus"))
 
-(quelpa '(org-media-note :fetcher github :repo "yuchen-lea/org-media-note"))
-
-(quelpa '(aider
-          :fetcher github
-          :repo "tninja/aider.el"
-          :files ("*.el")))
-
+;; (quelpa '(org-media-note :fetcher github :repo "yuchen-lea/org-media-note"))
 
 ;; some pinned packages
 
