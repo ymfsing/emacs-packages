@@ -169,7 +169,7 @@
 
 (quelpa '(lsp-bridge :fetcher github
                      :repo "manateelazycat/lsp-bridge"
-                     :files (:defaults "*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")))
+                     :files ("*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")))
 
 (quelpa '(popon :fetcher git :url "https://codeberg.org/akib/emacs-popon.git"))
 (quelpa '(acm-terminal :fetcher github :repo "twlz0ne/acm-terminal"))
