@@ -53,6 +53,7 @@
     ;;; completion
     yasnippet
     ;;; edit
+    super-save
     vundo
     avy
     hl-todo
@@ -93,6 +94,7 @@
     blamer
     diff-hl
     ;;; prog
+    dape
     citre
     format-all
     aggressive-indent
@@ -108,15 +110,6 @@
     lua-mode
     markdown-mode
     markdown-toc
-    org
-    org-contrib
-    org-appear
-    org-download
-    toc-org
-    ox-pandoc
-    anki-editor
-    org-roam
-    org-roam-ui
     jupyter
     ruby-mode
     vterm
@@ -128,10 +121,23 @@
     json-mode
     yaml-mode
     nix-mode
-    org-static-blog
     plantuml-mode
+    ;;; org
+    org
+    org-contrib
+    org-appear
+    valign
+    org-download
+    toc-org
+    ox-pandoc
+    anki-editor
+    org-roam
+    org-roam-ui
+    org-static-blog
     ;;; tools
     aidermacs
+    minuet
+    gptel
     leetcode
     speed-type
     flycheck
@@ -159,6 +165,8 @@
           :repo "redguardtoo/pyim-tsinghua-dict"
           :files ("*.el" "*.pyim")))
 
+(quelpa '(yasnippet-snippets :fetcher github :repo "ymfsing/yasnippet-snippets"))
+
 (quelpa '(color-rg :fetcher github :repo "manateelazycat/color-rg"))
 
 (quelpa '(thing-edit :fetcher github :repo "manateelazycat/thing-edit"))
@@ -170,11 +178,8 @@
 (quelpa '(lsp-bridge :fetcher github
                      :repo "manateelazycat/lsp-bridge"
                      :files ("*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")))
-
 (quelpa '(popon :fetcher git :url "https://codeberg.org/akib/emacs-popon.git"))
 (quelpa '(acm-terminal :fetcher github :repo "twlz0ne/acm-terminal"))
-
-;; (quelpa '(org-link-archive :fetcher github :repo "farynaio/org-link-archive"))
 
 (quelpa '(org-mac-link :fetcher github :repo "ymfsing/org-mac-link"))
 
@@ -183,6 +188,9 @@
 ;; (quelpa '(org-noter-plus :fetcher github :repo "yuchen-lea/org-noter-plus"))
 
 ;; (quelpa '(org-media-note :fetcher github :repo "yuchen-lea/org-media-note"))
+
+(quelpa '(mcp :fetcher github :repo "lizqwerscott/mcp.el"))
+
 
 ;; some pinned packages
 
