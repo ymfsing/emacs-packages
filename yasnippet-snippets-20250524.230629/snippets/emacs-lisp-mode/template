@@ -1,0 +1,80 @@
+# -*- mode: snippet -*-
+# name: A elisp template
+# key: te
+# --
+;;; ${1:filename}.el --- ${2:Simple description} -*- coding: utf-8; lexical-binding: t; -*-
+
+
+;; Filename: $1.el
+;; Description: $2
+;; Author: ${3:`(get-git-user-name)`} ${4:<`(get-git-user-email)`>}
+;; Maintainer: $3 $4
+;; Copyright (C) `(format-time-string "%Y")`, $3, all rights reserved.
+;; Created: `(format-time-string "%Y-%m-%d %T")`
+;; Version: 0.1
+;; Last-Updated: `(format-time-string "%Y-%m-%d %T")`
+;;           By: $3
+;; Keywords: $5
+;;
+;; Features that might be required by this library:
+;;
+;; $6
+
+
+;;; This file is NOT part of GNU Emacs
+
+;;; License
+;;
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+
+
+;;; Commentary:
+;;
+;; $2
+;; $7
+
+
+;;; Installation:
+;;
+;; ${8:No need more.}
+
+
+;;; Customize:
+;;
+;; $9
+;;
+;; All of the above can customize by:
+;;      M-x customize-group RET $1 RET
+
+
+;;; Change log:
+;;
+;; `(format-time-string "%Y/%m/%d")`
+;;      * First released.
+
+
+;;; Require
+$10
+
+
+;;; Code:
+
+$0
+
+
+(provide '$1)
+
+;;; $1.el ends here

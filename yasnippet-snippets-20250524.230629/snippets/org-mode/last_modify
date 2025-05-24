@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Org last modified for org roam
+# key: lm
+# --
+#+LAST_MODIFIED: []

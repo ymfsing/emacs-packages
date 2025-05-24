@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Source Code Block for html simple
+# key: ch
+# --
+#+BEGIN_SRC html
+
+$0
+
+#+END_SRC

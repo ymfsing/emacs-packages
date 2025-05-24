@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: export for org blog preview start
+# key: bps
+# --
+#+begin_export html
+<!-- preview-start -->
+#+end_export
