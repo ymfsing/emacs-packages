@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Source Code Block for plantuml
+# key: cpo
+# --
+#+BEGIN_SRC plantuml :file ../attachfile/org-babel/$1.png :cmdline -charset UTF-8
+
+$0
+
+#+END_SRC

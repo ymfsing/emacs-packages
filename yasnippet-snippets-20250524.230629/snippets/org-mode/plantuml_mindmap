@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: plantuml mindmap
+# key: pm
+# --
+@startmindmap
+$0
+@endmindmap

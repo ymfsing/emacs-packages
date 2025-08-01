@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: current_path
+# key: cpath
+# --
+current_path=$(
+    cd $(dirname "\$\{BASH_SOURCE[0]\}")
+    pwd
+)

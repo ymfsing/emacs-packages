@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Source Code Block for elisp
+# key: ce
+# --
+#+BEGIN_SRC elisp :tangle yes
+
+$0
+
+#+END_SRC

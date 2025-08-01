@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Source Code Block for shell
+# key: cs
+# --
+#+BEGIN_SRC shell
+
+$0
+
+#+END_SRC

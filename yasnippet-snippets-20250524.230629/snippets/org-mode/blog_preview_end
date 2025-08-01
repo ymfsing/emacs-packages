@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: export for org blog preview end
+# key: bpe
+# --
+#+begin_export html
+<!-- preview-end -->
+#+end_export

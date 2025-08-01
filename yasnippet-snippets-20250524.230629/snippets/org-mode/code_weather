@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Source Code Block for wttr.in
+# key: cw
+# --
+#+BEGIN_SRC sh coding: utf-8 :results output
+
+curl "wttr.in/nanling?0QT?m"
+
+#+END_SRC
